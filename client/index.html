@@ -11,18 +11,23 @@
         <!-- <script src="timer.js"></script> -->
     </head>
     <body>
-        <div id="torchpane"></div>
-        <div id="menu">
-            <h2>DigiWave</h2>
-            <p>DigiWave is a free web app that turns a group of phone screens into a large display. To connect to the server, please enter your seat number, and wait for a connection to be made.</p>
-            <br/>
-            <input type="text" id="seatNum">
-            <br/>
-            <button class="init">Initialize Torch!</button>
-            <br/>
-            <button class="switch" disabled>Toggle Flashlight</button>
-            <br/>
+        <div id="gradient">
+            <div id="torchpane"></div>
+            <div id="menu">
+                <h2>DigiWave</h2>
+                <div id="typewriter_container">
+                    <p>DigiWave is a free web app that turns a group of phone screens into a large display.</p>
+                    <p id="second_p">To connect to the server, please enter your seat number, and wait for a connection to be made.</p>
+                </div>
+                <br/>
+                <input type="text" id="seatNum">
+                <br/>
+                <button class="init">Initialize Torch!</button>
+                <br/>
+                <button class="switch" disabled>Toggle Flashlight</button>
+                <br/>
+            </div>
+            <button id='toggleMenu'>Toggle Menu</button>
         </div>
-        <button id='toggleMenu'>Toggle Menu</button>
     </body>
 </html>

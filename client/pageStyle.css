@@ -24,3 +24,86 @@
     left: 0;
     height: 10%;
 }
+
+body {
+    padding: none;
+    border: none;
+    margin: auto;
+    background-image: linear-gradient(to left, #b46060, #6060B4);
+    /*AA55AA and AA5555*/
+    /*B46060 and 6060B4*/
+}
+
+h2 {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 30px;
+    color: white;
+}
+
+p {
+    font-family: 'Courier New', monospace;
+    color: white;
+    overflow: hidden;
+    width: 0;
+    border-right: .15em solid orange;
+    font-size: 15px;
+    padding: none;
+    white-space: nowrap;
+    animation:
+        typing 1s steps(20, end) forwards,
+        blink-caret 1s step-end infinite;
+}
+
+#second_p {
+    animation-delay: 1s;
+}
+
+#typewriter_container {
+    display: inline-block;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: orange }
+}
+
+#seatNum {
+    width: 50%;
+    height: 50px;
+    border-radius: 25px;
+    border: 2.5px solid #606060;
+    background-color: lightgray;
+    margin: 10px;
+    text-align: center;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+}
+
+.init {
+    width: 40%;
+    margin: 10px;
+    height: 40px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 20px;
+    border: 3px solid black;
+}
+
+.switch {
+    width: 40%;
+    margin: 10px;
+    height: 40px;
+    font-family: 'Trebuchet MS', sans-serif;
+    font-size: 15px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 20px;
+    border: 3px solid black;
+}
