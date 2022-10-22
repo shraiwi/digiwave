@@ -1,32 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Phone Flashlight Access Portal</title>
+        <title>DigiWave!</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <script src="LightCommander.js"></script>
         <script src="CommandReceiver.js"></script>
-        <style>
-            #torchpane {
-                pointer-events: none;
-                position: absolute;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                height: 100vh;
-                backdrop-filter: invert(var(--torch));
-            }
-        </style>
+        <script src="WebsiteFunctions.js"></script>
+        <link rel="stylesheet" href="pageStyle.css"/>
         <!-- <script src="timer.js"></script> -->
     </head>
     <body>
         <div id="torchpane"></div>
-        <h1>This page is temporarily being used for Hack GT, a collegiate hackathon</h1>
-        <input type="text" id="seatNum" name="seatNum">
-        <button class="init">Initialize Torch!</button>
-        <br/>
-        <button class="switch" disabled>Toggle Flashlight</button>
-        <br/>]
+        <div id="menu">
+            <h2>DigiWave</h2>
+            <p>DigiWave is a free web app that turns a group of phone screens into a large display. To connect to the server, please enter your seat number, and wait for a connection to be made.</p>
+            <br/>
+            <input type="text" id="seatNum">
+            <br/>
+            <button class="init">Initialize Torch!</button>
+            <br/>
+            <button class="switch" disabled>Toggle Flashlight</button>
+            <br/>
+            <button id="menuToggle">Toggle Menu</button>
+        </div>
     </body>
 </html>
