@@ -62,6 +62,3 @@ window.addEventListener("DOMContentLoaded", () => {
         LightCommander.initTorch();
     });
 });
-
-
-

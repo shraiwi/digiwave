@@ -13,7 +13,7 @@ new_uri += loc.pathname + "/to/ws";
 const serverComms = new WebSocket(new_uri);
 
 window.addEventListener("load", function() {
-    interval = window.setInterval(applyCommand, 1000);
+    interval = window.setInterval(applyCommand, 100);
 });
 
 serverComms.onmessage = (event) => {
@@ -43,10 +43,32 @@ serverComms.onmessage = (event) => {
 
 function resetTime() {
     // reset the time
-    time = 0;
+    time = 0.0;
 }
 
 function applyCommand(command) {
     //what to do when a command is sent in
     //todo: create an ontick method that checks the current command and applies it based on the time as well
+    //base commands: wave_left, on, off, blink
+    time += 0.1;
+    switch (command) {
+        case ("wave_left"):
+            time_flash = x * 10 / 2.0;
+            time_flash = Math.floor(time_flash * 10) / 10.0
+            if(time == time_flash) {
+                LightCommander.setTorch(true);
+            } else {
+                LightCommander.setTorch(false);
+            }
+            break;
+        case ("on"):
+            LightCommander.setTorch(true);
+            break;
+        case ("off"):
+            LightCommander.setTorch(false);
+            break;
+        case ("blink"):
+            LightCommander.setTorch(time % 2 == 0);
+            break;
+    }
 }
