@@ -13,7 +13,7 @@ const Commands = {
         
         return time == timeFlash;
     },
-}
+};
 
 const CommandReceiver = {
     x: NaN,
@@ -27,10 +27,12 @@ const CommandReceiver = {
     commandStartTime: undefined,
     
     connectTo(url) {
+        console.info(`connecting to ${url}`)
         this.serverConn = new WebSocket(url);
         
         this.serverConn.onmessage = (e) => {
-            const msg = JSON.parse(event.data);
+            const msg = JSON.parse(e.data);
+            console.info("message recieved:", msg/*, e*/);
             switch (msg.type) {
                 case "set_position":
                     // what to do if it gets data telling it its position (two floats)
@@ -40,6 +42,7 @@ const CommandReceiver = {
                 case "set_command":
                     // what to do if it gets data telling it a command (single string)
                     if (msg.command in Commands) {
+                        console.info(`running command "${msg.command}"`);
                         this.runCommand(msg.command);
                     } else {
                         console.error("recieved invalid command!");

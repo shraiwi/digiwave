@@ -55,18 +55,4 @@ const LightCommander = {
     },
 };
 
-window.addEventListener("DOMContentLoaded", () => {
-    document.querySelector(".init").addEventListener("click", async () => {
-        if (LightCommander.torchState === undefined) await LightCommander.initTorch();
-        
-        const btn = document.querySelector('.switch');
-
-        btn.addEventListener('click', () => {
-            LightCommander.setTorch(!LightCommander.torchState);
-        });
-        btn.disabled = false;
-    });
-});
-
-
 

@@ -30,9 +30,9 @@ const clientDb = {
   ids: new Uint8Array(65536),
   
   allocId() {
-    id = ids.indexOf(0);
+    id = this.ids.indexOf(0);
     if (id !== -1) {
-      ids[id] = 1;
+      this.ids[id] = 1;
     } else {
       console.warn("client limit reached!");
     }
@@ -40,7 +40,7 @@ const clientDb = {
   },
   
   freeId(id) {
-    ids[id] = 0;
+    this.ids[id] = 0;
   },
   
   add(conn) {
@@ -75,16 +75,20 @@ function onWsJson(conn, obj) {
         console.info("new admin added");
         conn.admin = true;
       }
+      break;
     }
     case "set_command": {
       if (conn.admin) { // make sure the user is admin
+        const clientCommand = { // send command to all clients
+          type: "set_command",
+          command: obj.command
+        };
+        const serializedData = JSON.stringify(clientCommand);
         clientDb.conns.forEach((client) => { 
-          if (!client.admin) client.sendJson({ // send command to all clients
-            type: "set_command",
-            command: conn.command
-          });
+          if (!client.admin) client.send(serializedData);
         });
       }
+      break;
     }
   }
   console.debug("json object", obj);
