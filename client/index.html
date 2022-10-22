@@ -4,11 +4,24 @@
         <title>Phone Flashlight Access Portal</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
-        <script src="scripts.js"></script>
+        <script src="LightCommander.js"></script>
         <script src="socketData.js"></script>
+        <style>
+            #torchpane {
+                pointer-events: none;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                height: 100vh;
+                backdrop-filter: invert(var(--torch));
+            }
+        </style>
         <!-- <script src="timer.js"></script> -->
     </head>
     <body>
+        <div id="torchpane"></div>
         <h1>This page is temporarily being used for Hack GT, a collegiate hackathon</h1>
         <input type="text" id="seatNum" name="seatNum">
         <button class="init">Initialize Torch!</button>
