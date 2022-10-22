@@ -1,5 +1,7 @@
 const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator;
 
+// works only on android chrome, nothing else :(
+
 if (SUPPORTS_MEDIA_DEVICES) {
     navigator.mediaDevices.enumerateDevices().then(devices => {
         const cameras = devices.filter((device) => device.kind === 'videoinput');
