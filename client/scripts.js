@@ -46,6 +46,7 @@ const LightCommander = {
             btn.addEventListener('click', () => {
                 this.setTorch(!this.torchState);
             });
+            btn.disabled = false;
         }
     },
     
@@ -53,4 +54,8 @@ const LightCommander = {
         
     }
 };
+
+document.querySelector(".init").addEventListener("click", async () => {
+    LightCommander.initTorch();
+});
 
