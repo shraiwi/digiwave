@@ -53,10 +53,6 @@ const LightCommander = {
         //this.torchState = false;
         this.setTorch(false);
     },
-    
-    setCommand() {
-        
-    }
 };
 
 window.addEventListener("DOMContentLoaded", () => {
