@@ -10,7 +10,7 @@ const LightCommander = {
     torchState: undefined, // is boolean when ready
     
     async initTorch() {
-        if ("mediaDevices" in Navigator) {
+        if ("mediaDevices" in navigator) {
             const devices = await navigator.mediaDevices.enumerateDevices();
             const cameras = devices.filter((device) => device.kind === 'videoinput');
             
@@ -47,6 +47,8 @@ const LightCommander = {
                 this.setTorch(!this.torchState);
             });
             btn.disabled = false;
+        } else {
+            throw "media api not accesible!";
         }
     },
     
