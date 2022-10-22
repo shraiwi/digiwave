@@ -5,7 +5,7 @@ if (SUPPORTS_MEDIA_DEVICES) {
         const cameras = devices.filter((device) => device.kind === 'videoinput');
 
         if(cameras.length === 0) {
-            throw 'no camera found on this device.';
+            throw 'No camera found on this device.';
         }
         const camera = cameras[cameras.length - 1];
 
@@ -24,7 +24,7 @@ if (SUPPORTS_MEDIA_DEVICES) {
                 //todo: check if camera has a torch
 
                 const btn = document.querySelector('.switch');
-                btn.addEventListener('onClick', function() {
+                btn.addEventListener('click', function() {
                     track.applyConstraints({
                         advanced: [{torch: true}]
                     });
