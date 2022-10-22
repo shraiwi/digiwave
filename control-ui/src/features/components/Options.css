@@ -1,0 +1,29 @@
+.options {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+#rectangle {
+    height: 100%;
+    width: 10px;
+    background-color: white;
+    position:relative;
+    animation: backandforth 40s linear;
+    animation-iteration-count:infinite;
+}
+
+#wrapper {
+    background-color:black;
+    display:table;
+    width:250px;
+    height:100px;
+}
+
+#innerwrapper {
+    display:table-cell;
+    vertical-align:middle;
+}
+
+@keyframes backandforth {0%{left:0;} 50%{left:96%;} 100%{left:0;}}
