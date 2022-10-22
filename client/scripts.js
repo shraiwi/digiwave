@@ -30,7 +30,7 @@ const LightCommander = {
             });
             this.videoTrack = stream.getVideoTracks()[0]; // get first video track
     
-            const imageCapture = new ImageCapture(track);
+            const imageCapture = new ImageCapture(this.videoTrack);
             const photoCapabilities = await imageCapture.getPhotoCapabilities();
             
             this.setTorch = (on) => {
@@ -57,7 +57,11 @@ const LightCommander = {
     }
 };
 
-document.querySelector(".init").addEventListener("click", async () => {
-    LightCommander.initTorch();
+window.addEventListener("DOMContentLoaded", () => {
+    document.querySelector(".init").addEventListener("click", async () => {
+        LightCommander.initTorch();
+    });
 });
+
+
 
