@@ -16,15 +16,6 @@
     text-align: center;
 }
 
-#toggleMenu {
-    width: 100%;
-    border: none;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    height: 10%;
-}
-
 body {
     padding: none;
     border: none;
@@ -84,26 +75,26 @@ p {
     font-size: 20px;
 }
 
-.init {
+button {
     width: 40%;
     margin: 10px;
     height: 40px;
     font-family: 'Trebuchet MS', sans-serif;
     font-size: 15px;
     background-color: lightgray;
-    border: none;
     border-radius: 20px;
     border: 3px solid black;
+    color: black;
 }
 
-.switch {
-    width: 40%;
-    margin: 10px;
-    height: 40px;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-size: 15px;
-    background-color: lightgray;
+#toggleMenu {
+    width: 100%;
     border: none;
-    border-radius: 20px;
-    border: 3px solid black;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 10%;
+    border-radius: 0;
+    margin: 0px;
+    background-color: #A587A5;
 }
