@@ -1,6 +1,14 @@
 var WebSocketServer = require('websocket').server;
 var http = require('http');
 
+const password = "this is an awful password!";
+const seatDb = {
+  "102": [ 0.1, 0.5 ],
+  "103": [ 0.2, 0.5 ],
+  "104": [ 0.3, 0.5 ],
+  "105": [ 0.4, 0.5 ],
+};
+
 var server = http.createServer(function onHttpRequest(req, resp) {
   // serve client data
 });
@@ -10,13 +18,6 @@ server.listen(8000, function() { console.log("http server started"); });
 wsServer = new WebSocketServer({
   httpServer: server
 });
-
-const seatDb = {
-  "102": [ 0.1, 0.5 ],
-  "103": [ 0.2, 0.5 ],
-  "104": [ 0.3, 0.5 ],
-  "105": [ 0.4, 0.5 ],
-}
 
 const clientDb = {
   conns: new Set(),
@@ -47,7 +48,6 @@ const clientDb = {
   },
 };
 
-const password = "this is an awful password!"
 
 function onWsJson(conn, obj) {
   switch (obj.type) {
@@ -84,10 +84,7 @@ function onWsJson(conn, obj) {
   console.debug("json object", obj);
 }
 
-const ids = new Uint8Array(65536); // 1 if id is in use
-
-
-// WebSocket server
+// ws server
 wsServer.on('request', function onWsRequest(req) { // on ws connection
   var conn = req.accept(null, req.origin);
   

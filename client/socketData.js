@@ -14,7 +14,7 @@ const serverComms = new WebSocket(new_uri);
 
 window.addEventListener("load", function() {
     interval = window.setInterval(applyCommand, 1000);
-})
+});
 
 serverComms.onmessage = (event) => {
     const msg = JSON.parse(event.data);
