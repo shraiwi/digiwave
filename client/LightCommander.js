@@ -1,11 +1,7 @@
-const SUPPORTS_MEDIA_DEVICES = 'mediaDevices' in navigator;
-
-// works only on android chrome, nothing else :(
+// flashlight works only on android chrome, nothing else :(
 
 const LightCommander = {
     videoTrack: null,
-    
-    commandCb: undefined,
 
     torchState: undefined, // is boolean when ready
     

@@ -2,7 +2,46 @@ let x, y;
 let command;
 let time;
 
-var loc = window.location, new_uri;
+const CommandReceiver {
+    x: NaN,
+    y: NaN,
+    id: -1,
+    
+    serverConn: undefined,
+    
+    command: "off",
+    commandCb: undefined,
+    
+    connectTo(url) {
+        this.serverConn = new WebSocket(url);
+        
+        this.serverConn.onmessage = (e) => {
+            const msg = JSON.parse(event.data);
+            switch (msg.type) {
+                case "set_position":
+                    // what to do if it gets data telling it its position (two floats)
+                    this.x = msg.x;
+                    this.y = msg.y;
+                    break;
+                case "set_command":
+                    // what to do if it gets data telling it a command (single string)
+                    if(serverComms.OPEN) {
+                        this.command = msg.command;
+                        resetTime();
+                    } else {
+                        this.command = "off";
+                        console.warn("Recieved a command before connection is open. Command not activated.");
+                    }
+                    break;
+                default:
+                    console.error("Something went wrong. The client has recieved data in a type that is has not expected...");
+                    break;
+            }
+        }
+    }
+}
+
+/*var loc = window.location, new_uri;
 if (loc.protocol === "https:") {
     new_uri = "wss:";
 } else {
@@ -71,4 +110,4 @@ function applyCommand(command) {
             LightCommander.setTorch(time % 2 == 0);
             break;
     }
-}
+}*/
