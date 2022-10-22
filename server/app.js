@@ -1,6 +1,8 @@
 var WebSocketServer = require('websocket').server;
 var http = require('http');
+var nodeStatic = require('node-static');
 
+const serverRoot = "client/"
 const password = "this is an awful password!";
 const seatDb = {
   "102": [ 0.1, 0.5 ],
@@ -9,8 +11,12 @@ const seatDb = {
   "105": [ 0.4, 0.5 ],
 };
 
+var fileServer = new nodeStatic.Server(serverRoot);
+
 var server = http.createServer(function onHttpRequest(req, resp) {
-  // serve client data
+  req.addListener("end", function () {
+    fileServer.serve(req, resp);
+  }).resume();
 });
 server.listen(8000, function() { console.log("http server started"); });
 
