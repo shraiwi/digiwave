@@ -1,0 +1,30 @@
+#torchpane {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100vh;
+    backdrop-filter: invert(var(--torch));
+}
+
+#menu {
+    display: block;
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+#toggleMenu {
+    width: 100%;
+    border: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 10%;
+}
+
+body {
+    background-image: linear-gradient()
+}
