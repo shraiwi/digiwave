@@ -24,7 +24,7 @@ if (SUPPORTS_MEDIA_DEVICES) {
                 //todo: check if camera has a torch
 
                 const btn = document.querySelector('.switch');
-                btn.addEventListener('click', function() {
+                btn.addEventListener('onClick', function() {
                     track.applyConstraints({
                         advanced: [{torch: true}]
                     });
