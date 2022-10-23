@@ -1,7 +1,7 @@
 # digiwave
 A website that turns a group of smartphones into a lightshow!
 
-[Client App](https://shraiwi.github.io/digiwave/client/)
+[Client App](https://shraiwi.github.io/digiwave/client/) (broken without websocket server)
 
 [Shader Editor](https://www.shadertoy.com/view/DsXGRf)
 
