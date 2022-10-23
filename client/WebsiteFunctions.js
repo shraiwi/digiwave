@@ -1,9 +1,5 @@
-// TODO: add a website function where sending the required data to the server runs toggleDisplay()
-// TODO: change the color of the buttons based on their ability to be pressed. if the button can be pressed, it should be #B4B4B4. otherwise, it should be "lightgray"
-
 window.addEventListener("DOMContentLoaded", () => {
     var toggleMenuBtn = document.getElementById('toggleMenu');
-    //document.getElementById('toggleMenu');
     toggleMenuBtn.addEventListener('click', function() {
         toggleDisplay();
     });
@@ -18,10 +14,17 @@ window.addEventListener("DOMContentLoaded", () => {
         const wsUrl = `ws://${wsHost}`;
         
         CommandReceiver.connectTo(wsUrl);
+        
+        // hide menu
+        const menu = document.getElementById('menu');
+        menu.style.display = 'none';
+        
+        // clear body background
+        document.body.style.backgroundImage = "none";
     });
 });
 
 function toggleDisplay() {
-    var menu = document.getElementById('menu');
+    const menu = document.getElementById('menu');
     menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
 }

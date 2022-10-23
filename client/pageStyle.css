@@ -1,3 +1,9 @@
+* {
+    font-family: 'Courier New', monospace;
+    font-weight: bold;
+    color: white;
+}
+
 #torchpane {
     pointer-events: none;
     position: absolute;
@@ -20,28 +26,26 @@ body {
     padding: none;
     border: none;
     margin: auto;
-    background-image: linear-gradient(to left, #b46060, #6060B4);
+    /*background-image: linear-gradient(to left, #b46060, #6060B4);*/
+    background-image: url("noise_bg.svg");
     /*AA55AA and AA5555*/
     /*B46060 and 6060B4*/
 }
 
 h2 {
     font-family: 'Brush Script MT', cursive;
-    font-size: 30px;
+    font-size: 4em;
     color: white;
+    text-shadow: 0 0 0.7em #03adfc;
 }
 
-p {
-    font-family: 'Courier New', monospace;
-    color: white;
-    overflow: hidden;
-    width: 0;
-    border-right: .15em solid orange;
-    font-size: 15px;
+p {    
+    width: 100%;
+    /*border-right: .15em solid orange;*/
+    font-size: 1.5em;
     padding: none;
-    white-space: nowrap;
     animation:
-        typing 1s steps(20, end) forwards,
+        /*typing 1s steps(20, end) forwards,*/
         blink-caret 1s step-end infinite;
 }
 
@@ -64,27 +68,33 @@ p {
 }
 
 #seatNum {
-    width: 50%;
-    height: 50px;
-    border-radius: 25px;
-    border: 2.5px solid #606060;
-    background-color: lightgray;
-    margin: 10px;
+    width: max(4em, 50%);
+    margin: 0.2em;
+    border-radius: 0.3em;
+    padding: 0.2em;
+    font-size: 1.5em;
+    
+    border: 0.1em solid white;
+    background-color: transparent;
+    
     text-align: center;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-size: 20px;
+    font-size: 3em;
+}
+
+#seatNum:focus {
+    outline: none;
+    box-shadow: 0 0 0.2em #fff;
 }
 
 button {
-    width: 40%;
-    margin: 10px;
-    height: 40px;
-    font-family: 'Trebuchet MS', sans-serif;
-    font-size: 15px;
-    background-color: lightgray;
-    border-radius: 20px;
-    border: 3px solid black;
-    color: black;
+    width: max(4em, 50%);
+    margin: 0.2em;
+    border-radius: 0.3em;
+    padding: 0.2em;
+    font-size: 1.5em;
+
+    border: 0.2em solid white;
+    background-color: transparent;
 }
 
 #toggleMenu {
@@ -93,8 +103,7 @@ button {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 10%;
+    height: 2em;
     border-radius: 0;
     margin: 0px;
-    background-color: #A587A5;
 }

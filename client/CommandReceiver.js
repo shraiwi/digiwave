@@ -32,7 +32,7 @@ const CommandReceiver = {
         
         this.serverConn.onmessage = (e) => {
             const msg = JSON.parse(e.data);
-            console.info("message recieved:", msg/*, e*/);
+            console.info("message recieved:", msg);
             switch (msg.type) {
                 case "set_position":
                     // what to do if it gets data telling it its position (two floats)
