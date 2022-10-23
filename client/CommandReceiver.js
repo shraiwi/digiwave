@@ -1,4 +1,6 @@
 
+// contains the fragment shaders for all the commands. 
+// called 10 times a second to animate things.
 const Commands = {
     on(x, y, time) { return true; },
     off(x, y, time) { return false; },
@@ -24,6 +26,7 @@ const Commands = {
     },
 };
 
+// recieves commands over a websocket connection.
 const CommandReceiver = {
     x: NaN,
     y: NaN,
@@ -41,8 +44,14 @@ const CommandReceiver = {
     seatPromiseReject: undefined,
     seatPromiseResolve: undefined,
     
+    // returns a promise that resolves on a valid server connection
     connectTo(url) {
         console.info(`connecting to ${url}...`);
+        
+        const retval = new Promise((resolve, reject) => {
+            this.connectPromiseResolve = resolve;
+            this.connectPromiseReject = reject;
+        });
         
         try {
             this.serverConn = new WebSocket(url);
@@ -90,12 +99,10 @@ const CommandReceiver = {
             this.connectPromiseResolve();
         };
         
-        return new Promise((resolve, reject) => {
-            this.connectPromiseResolve = resolve;
-            this.connectPromiseReject = reject;
-        });
+        return retval;
     },
     
+    // returns a promise that resolves if a get_position command completes.
     setSeat(seatNum) {
         const retval = new Promise((resolve, reject) => {
             this.seatPromiseResolve = resolve;
@@ -114,6 +121,7 @@ const CommandReceiver = {
         return retval;
     },
     
+    // runs every 100ms and dispatches the correct command
     dispatchCommand() {
         const time = (performance.now() - this.commandStartTime) * 0.001;
         LightCommander.setTorch(
@@ -121,6 +129,7 @@ const CommandReceiver = {
         );
     },
     
+    // runs a new command, and stops a previously running command
     runCommand(cmd) {
         if (this.commandCbId) clearInterval(this.commandCbId);
         this.commandName = cmd;

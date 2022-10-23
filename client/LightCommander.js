@@ -5,6 +5,7 @@ const LightCommander = {
 
     torchState: undefined, // is null/true/false when ready
     
+    // sets the torch state, either true or false.
     setTorch(on) {
         this.torchState = on;
                 
@@ -20,9 +21,12 @@ const LightCommander = {
         }
     },
     
+    // try to initialize the torch asynchronously
+    // if no flashlight is available, fallback to using just the screen.
     async initTorch() {
         try {
-            if ("mediaDevices" in navigator) {
+            if ("mediaDevices" in navigator) { 
+                // get a video track to control the torch. android only.
                 const devices = await navigator.mediaDevices.enumerateDevices();
                 const cameras = devices.filter((device) => device.kind === 'videoinput');
                 
