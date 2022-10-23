@@ -14,14 +14,14 @@ const Commands = {
         return time == timeFlash;
     },
     
-    diagonal_lines(x, y, time) {
+    diagonal_lines(x, y, t) {
         return Math.sin((x + y) * 4.0 + t * 3.0);
-    }
+    },
     
-    spinning_lines(x, y, time) {
-        const a = x * Math.cos(time * 0.1) + y * Math.sin(0.1);
-        return Math.sin(a * 4.0 + time * 3.0) > 0.0;
-    }
+    spinning_lines(x, y, t) {
+        const a = x * Math.cos(t * 0.1) + y * Math.sin(0.1);
+        return Math.sin(a * 4.0 + t * 3.0) > 0.0;
+    },
 };
 
 const CommandReceiver = {
