@@ -47,6 +47,7 @@ const CommandReceiver = {
                     // what to do if it gets data telling it its position (two floats)
                     this.x = msg.x;
                     this.y = msg.y;
+                    this.id = msg.id;
                     break;
                 case "set_command":
                     // what to do if it gets data telling it a command (single string)
@@ -61,6 +62,14 @@ const CommandReceiver = {
                     console.warn("Something went wrong. The client has recieved data in a type that is has not expected...");
                     break;
             }
+        }
+        
+        this.serverConn.onopen = (e) => {
+            const seatNum = document.getElementById("seatNum").value;
+            this.serverConn.send(JSON.stringify({
+                type: "get_position",
+                seat: seatNum
+            }));
         }
     },
     
