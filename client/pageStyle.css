@@ -11,8 +11,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 100vh;
-    backdrop-filter: invert(var(--torch));
+    color: #7f7f7f;
+    padding: 1em;
 }
 
 #menu {

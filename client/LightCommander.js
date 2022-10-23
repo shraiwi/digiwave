@@ -3,7 +3,7 @@
 const LightCommander = {
     videoTrack: null,
 
-    torchState: undefined, // is boolean when ready
+    torchState: undefined, // is null/true/false when ready
     
     setTorch(on) {
         this.torchState = on;
@@ -15,7 +15,8 @@ const LightCommander = {
         }
         
         if (this.torchPane) {
-            this.torchPane.style.setProperty("--torch", 1.0 - this.torchState);
+            const b = this.torchState ? 0xff : 0x00;
+            this.torchPane.style.backgroundColor = `rgb(${b}, ${b}, ${b})`;
         }
     },
     
@@ -46,12 +47,11 @@ const LightCommander = {
         } catch (err) {
             console.error(err);
             
-            // fallback to screen api
+            // fallback to screen flashlight
             this.torchPane = document.querySelector("#torchpane");
         }
         
-        //this.torchState = false;
-        this.setTorch(false);
+        this.torchState = null;
     },
 };
 

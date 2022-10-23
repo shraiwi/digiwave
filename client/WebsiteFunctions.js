@@ -1,10 +1,14 @@
-window.addEventListener("DOMContentLoaded", () => {
-    var toggleMenuBtn = document.getElementById('toggleMenu');
+window.addEventListener("DOMContentLoaded", async () => {
+    /*var toggleMenuBtn = document.getElementById('toggleMenu');
     toggleMenuBtn.addEventListener('click', function() {
         toggleDisplay();
-    });
+    });*/
     
-    document.querySelector(".init").addEventListener("click", async () => {
+    const menuDiv = document.getElementById("menu");
+    const seatNumInput = document.getElementById("seatNum");
+    const initBtn = document.getElementById("init");
+    
+    initBtn.addEventListener("click", async () => {
         if (LightCommander.torchState === undefined) await LightCommander.initTorch();
         
         const urlParams = new URLSearchParams(window.location.search);
@@ -12,17 +16,26 @@ window.addEventListener("DOMContentLoaded", () => {
             || window.location.host;
         
         const wsUrl = `ws://${wsHost}`;
-        
-        CommandReceiver.connectTo(wsUrl);
-        
-        // hide menu
-        const menu = document.getElementById('menu');
-        menu.style.display = 'none';
-        
-        // clear body background
-        document.body.style.backgroundImage = "none";
-        
-        //document.body.requestFullscreen();
+
+        try {
+            seatNumInput.disabled = true;
+            initBtn.disabled = true;
+            initBtn.innerText = "Connecting...";
+            await CommandReceiver.connectTo(wsUrl);
+            await CommandReceiver.setSeat(seatNumInput.value);
+            
+            // connection was good, hide menu and ready controls
+            menuDiv.style.display = 'none';
+            document.body.style.backgroundImage = "none";
+            LightCommander.setTorch(false);
+            LightCommander.torchPane.innerHTML = "you're all set.</br>this side should be facing the venue!";
+        } catch (err) {
+            seatNumInput.disabled = false;
+            initBtn.disabled = false;
+            initBtn.innerText = "Go";
+            alert("Error while connecting: " + err.message);
+            console.warn(err);
+        }
     });
 });
 

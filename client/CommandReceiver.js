@@ -15,7 +15,7 @@ const Commands = {
     },
     
     diagonal_lines(x, y, t) {
-        return Math.sin((x + y) * 4.0 + t * 3.0);
+        return Math.sin((x + y) * 4.0 + t * 3.0) > 0.0;
     },
     
     spinning_lines(x, y, t) {
@@ -35,9 +35,21 @@ const CommandReceiver = {
     commandCbId: undefined,
     commandStartTime: undefined,
     
+    connectPromiseReject: undefined,
+    connectPromiseResolve: undefined,
+    
+    seatPromiseReject: undefined,
+    seatPromiseResolve: undefined,
+    
     connectTo(url) {
-        console.info(`connecting to ${url}`)
-        this.serverConn = new WebSocket(url);
+        console.info(`connecting to ${url}...`);
+        
+        try {
+            this.serverConn = new WebSocket(url);
+        } catch (err) {
+            this.connectPromiseReject(new Error("server connection error!"));
+            this.serverConn = undefined;
+        }
         
         this.serverConn.onmessage = (e) => {
             const msg = JSON.parse(e.data);
@@ -48,6 +60,16 @@ const CommandReceiver = {
                     this.x = msg.x;
                     this.y = msg.y;
                     this.id = msg.id;
+                    
+                    if (!this.x && !this.y) {
+                        this.seatPromiseReject(new Error("invalid seat!"));
+                    }
+                    
+                    if (this.id !== -1) {
+                        this.seatPromiseResolve();
+                    } else {
+                        this.seatPromiseReject(new Error("too many clients!"));
+                    }
                     break;
                 case "set_command":
                     // what to do if it gets data telling it a command (single string)
@@ -62,15 +84,34 @@ const CommandReceiver = {
                     console.warn("Something went wrong. The client has recieved data in a type that is has not expected...");
                     break;
             }
-        }
+        };
         
         this.serverConn.onopen = (e) => {
-            const seatNum = document.getElementById("seatNum").value;
+            this.connectPromiseResolve();
+        };
+        
+        return new Promise((resolve, reject) => {
+            this.connectPromiseResolve = resolve;
+            this.connectPromiseReject = reject;
+        });
+    },
+    
+    setSeat(seatNum) {
+        const retval = new Promise((resolve, reject) => {
+            this.seatPromiseResolve = resolve;
+            this.seatPromiseReject = reject;
+        });
+        
+        if (this.serverConn) {
             this.serverConn.send(JSON.stringify({
                 type: "get_position",
                 seat: seatNum
             }));
+        } else {
+            this.seatPromiseReject(new Error("no active connection!"));
         }
+        
+        return retval;
     },
     
     dispatchCommand() {
