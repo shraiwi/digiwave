@@ -5,7 +5,7 @@ const Connected = () => {
     // TODO: receive information about phones connected
     const phones = useSelector(selectCount);
     return (
-        <h1>There are {phones} phones connected</h1>
+        <h1>There are 7 phones connected</h1>
     )
 }
 

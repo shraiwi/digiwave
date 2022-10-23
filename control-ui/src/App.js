@@ -22,6 +22,7 @@ function App() {
 
   return (
     <div className="App">
+      <img src='DigiWave.png' alt='icon' style={{height: "150px", width:"150px"}}/>
       <Connected />
       <Options />
     </div>
