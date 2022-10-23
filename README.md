@@ -3,6 +3,8 @@ A website that turns a group of smartphones into a lightshow!
 
 [Client App](https://shraiwi.github.io/digiwave/client/)
 
+[Shader Editor](https://www.shadertoy.com/view/DsXGRf)
+
 ## Overview
 The project structure is as follows:
 
