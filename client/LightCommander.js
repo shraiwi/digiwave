@@ -15,7 +15,7 @@ const LightCommander = {
         }
         
         if (this.torchPane) {
-            this.torchPane.style.setProperty("--torch", 1 - this.torchState);
+            this.torchPane.style.setProperty("--torch", 1.0 - this.torchState);
         }
     },
     
