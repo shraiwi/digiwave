@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import "./Options.css"
 
-const Options = () => {
+const Options = (props) => {
+    const client = props.client;
     const [message, setMessage] = useState('');
     const [speed, setSpeed] = useState('');
 
     const wave = () => {
         setMessage(`Wave (speed: ${speed}) Pending...`);
+        client.send(JSON.stringify({type: "wave", speed: {speed}}));
     }
 
     const circle = () => {
         setMessage(`Circle (speed: ${speed}) Pending...`);
+        client.send(JSON.stringify({type: "circle", speed: {speed}}));
     }
 
     const changeSpeed = event => {
