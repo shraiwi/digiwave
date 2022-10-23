@@ -78,7 +78,7 @@ const CommandReceiver = {
         
         this.dispatchCommand();
         
-        this.commandCbId = setInterval(() => { this.dispatchCommand() }, 500);
+        this.commandCbId = setInterval(() => { this.dispatchCommand() }, 100);
     },
 }
 
