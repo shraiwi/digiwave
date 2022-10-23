@@ -61,7 +61,7 @@ const CommandReceiver = {
                     this.y = msg.y;
                     this.id = msg.id;
                     
-                    if (!this.x && !this.y) {
+                    if (this.x === null && this.y === null) {
                         this.seatPromiseReject(new Error("invalid seat!"));
                     }
                     
