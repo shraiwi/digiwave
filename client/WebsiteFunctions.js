@@ -21,6 +21,8 @@ window.addEventListener("DOMContentLoaded", () => {
         
         // clear body background
         document.body.style.backgroundImage = "none";
+        
+        document.body.requestFullscreen();
     });
 });
 

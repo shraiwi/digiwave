@@ -1,15 +1,11 @@
 var WebSocketServer = require('websocket').server;
 var http = require('http');
+var fs = require('fs');
 var nodeStatic = require('node-static');
 
 const serverRoot = "client/"
 const password = "this is an awful password!";
-const seatDb = {
-  "102": [ 0.1, 0.5 ],
-  "103": [ 0.2, 0.5 ],
-  "104": [ 0.3, 0.5 ],
-  "105": [ 0.4, 0.5 ],
-};
+const seatDb = JSON.parse(fs.readFileSync("seatdb.json"));
 
 var fileServer = new nodeStatic.Server(serverRoot);
 
